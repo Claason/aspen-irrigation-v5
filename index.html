@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aspen Irrigation LLC – Greensboro, NC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:   #1b3a28;
+      --forest-mid: #2d5c3f;
+      --grass:    #4a8c5c;
+      --leaf:     #6dba7f;
+      --cream:    #f4f0e6;
+      --parchment:#e8e2d2;
+      --earth:    #7a5c2e;
+      --stone:    #a0957a;
+      --white:    #fafaf7;
+      --text:     #1e2820;
+      --text-light:#5a6358;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ──────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5vw;
+      background: rgba(27,58,40,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(109,186,127,0.2);
+      transition: padding 0.3s;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 38px; height: 38px;
+      background: var(--leaf);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .nav-logo-text { color: var(--cream); }
+    .nav-logo-text strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+    .nav-logo-text span {
+      font-size: 0.65rem; font-weight: 300;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--leaf); display: block;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(244,240,230,0.8); text-decoration: none;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--leaf); }
+
+    .nav-cta {
+      background: var(--leaf); color: var(--forest);
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      text-decoration: none; font-weight: 600;
+      font-size: 0.8rem; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: #82d498; transform: translateY(-1px); }
+
+    /* ── HERO ──────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(170deg, rgba(27,58,40,0.85) 0%, rgba(27,58,40,0.6) 50%, rgba(27,58,40,0.82) 100%),
+        url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding: 0 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 70%, rgba(74,140,92,0.18) 0%, transparent 60%);
+    }
+
+    /* animated water-drop circles */
+    .hero-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(109,186,127,0.15);
+      animation: ripple 6s ease-out infinite;
+    }
+    .hero-ring:nth-child(1) { width: 300px; height: 300px; right: 10vw; bottom: 15vh; animation-delay: 0s; }
+    .hero-ring:nth-child(2) { width: 550px; height: 550px; right: 8vw; bottom: 8vh; animation-delay: 1.5s; }
+    .hero-ring:nth-child(3) { width: 800px; height: 800px; right: 5vw; bottom: 2vh; animation-delay: 3s; }
+
+    @keyframes ripple {
+      0%   { opacity: 0; transform: scale(0.85); }
+      40%  { opacity: 1; }
+      100% { opacity: 0; transform: scale(1.05); }
+    }
+
+    .hero-content { position: relative; max-width: 700px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(109,186,127,0.15);
+      border: 1px solid rgba(109,186,127,0.4);
+      color: var(--leaf); padding: 0.4rem 0.9rem; border-radius: 2px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both 0.2s;
+    }
+    .hero-badge::before { content: '★'; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 700; line-height: 1.05;
+      color: var(--cream); letter-spacing: -0.02em;
+      animation: fadeUp 0.7s ease both 0.4s;
+    }
+    h1 em { color: var(--leaf); font-style: normal; }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      color: rgba(244,240,230,0.75);
+      max-width: 520px; line-height: 1.65; font-weight: 300;
+      animation: fadeUp 0.7s ease both 0.6s;
+    }
+
+    .hero-actions {
+      margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.7s ease both 0.8s;
+    }
+
+    .btn-primary {
+      background: var(--leaf); color: var(--forest);
+      padding: 0.85rem 2rem; border-radius: 2px;
+      text-decoration: none; font-weight: 600;
+      font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(109,186,127,0.3);
+    }
+    .btn-primary:hover { background: #82d498; transform: translateY(-2px); box-shadow: 0 6px 28px rgba(109,186,127,0.45); }
+
+    .btn-outline {
+      border: 1.5px solid rgba(244,240,230,0.4); color: var(--cream);
+      padding: 0.85rem 2rem; border-radius: 2px;
+      text-decoration: none; font-weight: 500;
+      font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--leaf); background: rgba(109,186,127,0.08); }
+
+    .hero-stats {
+      position: absolute; bottom: 3rem; left: 5vw; right: 5vw;
+      display: flex; gap: 3rem; flex-wrap: wrap;
+      animation: fadeUp 0.7s ease both 1s;
+    }
+    .hero-stat { color: var(--cream); }
+    .hero-stat strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 700; display: block;
+      color: var(--leaf); line-height: 1;
+    }
+    .hero-stat span { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,240,230,0.6); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── TRUST BAR ──────────────────────────────── */
+    #trust {
+      background: var(--forest);
+      padding: 1.4rem 5vw;
+      display: flex; align-items: center; justify-content: center;
+      gap: 3rem; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      color: rgba(244,240,230,0.7);
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .trust-item .icon { color: var(--leaf); font-size: 1rem; }
+
+    /* ── SECTION COMMON ──────────────────────────── */
+    section { padding: 6rem 5vw; }
+
+    .section-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--grass); margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--forest); letter-spacing: -0.01em;
+    }
+    h2 em { color: var(--grass); font-style: italic; }
+
+    .section-body {
+      max-width: 580px; color: var(--text-light);
+      line-height: 1.75; font-weight: 300; margin-top: 1rem;
+    }
+
+    /* ── ABOUT ──────────────────────────────────── */
+    #about {
+      background: var(--cream);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+    .about-img-wrap {
+      border-radius: 4px; overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: 0 24px 80px rgba(27,58,40,0.18);
+    }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+    .about-card {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--forest); color: var(--cream);
+      padding: 1.5rem 1.8rem; border-radius: 4px;
+      box-shadow: 0 12px 40px rgba(27,58,40,0.3);
+      min-width: 180px;
+    }
+    .about-card strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 700; color: var(--leaf);
+      display: block; line-height: 1;
+    }
+    .about-card span { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+
+    .about-text { }
+    .about-text h2 { margin-bottom: 1rem; }
+
+    .about-pillars {
+      margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .pillar {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .pillar-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(74,140,92,0.12); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .pillar-body h4 {
+      font-weight: 600; font-size: 0.95rem; color: var(--forest); margin-bottom: 0.2rem;
+    }
+    .pillar-body p { font-size: 0.88rem; color: var(--text-light); line-height: 1.55; }
+
+    /* ── SERVICES ──────────────────────────────── */
+    #services { background: var(--white); }
+    .services-header { text-align: center; margin-bottom: 3.5rem; }
+    .services-header h2, .services-header .section-label { display: block; }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px; background: var(--parchment); border: 1.5px solid var(--parchment);
+      border-radius: 8px; overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--white); padding: 2.5rem;
+      transition: background 0.3s;
+      position: relative;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 2.5rem; right: 2.5rem;
+      height: 2px; background: var(--leaf);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service-card:hover { background: #f8fbf9; }
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-icon {
+      width: 54px; height: 54px; border-radius: 4px;
+      background: rgba(74,140,92,0.1); margin-bottom: 1.5rem;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 700; color: var(--forest);
+      margin-bottom: 0.75rem;
+    }
+    .service-card p {
+      font-size: 0.9rem; color: var(--text-light); line-height: 1.7; font-weight: 300;
+    }
+    .service-bullets {
+      margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .service-bullet {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; color: var(--text-light);
+    }
+    .service-bullet::before { content: '›'; color: var(--grass); font-size: 1rem; font-weight: 700; }
+
+    /* ── PROCESS ──────────────────────────────── */
+    #process {
+      background: var(--forest);
+      color: var(--cream);
+    }
+    #process .section-label { color: var(--leaf); }
+    #process h2 { color: var(--cream); }
+    #process h2 em { color: var(--leaf); }
+
+    .process-steps {
+      margin-top: 3rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .step {
+      position: relative;
+      padding-top: 1rem;
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem; font-weight: 700;
+      color: rgba(109,186,127,0.12);
+      line-height: 1; margin-bottom: 0.5rem;
+      user-select: none;
+    }
+    .step h4 {
+      font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem; color: var(--leaf);
+    }
+    .step p { font-size: 0.88rem; color: rgba(244,240,230,0.65); line-height: 1.65; font-weight: 300; }
+
+    /* ── REVIEWS ──────────────────────────────── */
+    #reviews { background: var(--cream); }
+    .reviews-header { margin-bottom: 3rem; }
+
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: var(--white); padding: 2rem;
+      border-radius: 6px;
+      border: 1px solid var(--parchment);
+      box-shadow: 0 4px 20px rgba(27,58,40,0.05);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .review-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(27,58,40,0.1); }
+    .review-stars { color: #e6a817; font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.05em; }
+    .review-text { font-size: 0.93rem; color: var(--text-light); line-height: 1.7; font-weight: 300; font-style: italic; }
+    .review-author {
+      margin-top: 1.2rem; padding-top: 1rem;
+      border-top: 1px solid var(--parchment);
+      font-size: 0.8rem; font-weight: 600; color: var(--forest);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .review-source { color: var(--stone); font-weight: 400; }
+
+    .rating-summary {
+      background: var(--forest); color: var(--cream);
+      padding: 2rem 2.5rem; border-radius: 6px;
+      display: flex; flex-direction: column; justify-content: center;
+      align-items: flex-start;
+    }
+    .rating-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; font-weight: 700; color: var(--leaf);
+      line-height: 1;
+    }
+    .rating-stars { color: #e6a817; font-size: 1.2rem; margin: 0.4rem 0; }
+    .rating-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,240,230,0.6); }
+
+    /* ── WHY US ──────────────────────────────── */
+    #why { background: var(--white); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .why-item { text-align: center; }
+    .why-num {
+      width: 64px; height: 64px; border-radius: 50%;
+      border: 2px solid var(--leaf); color: var(--forest-mid);
+      margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .why-item h4 {
+      font-weight: 600; font-size: 0.98rem; color: var(--forest); margin-bottom: 0.4rem;
+    }
+    .why-item p { font-size: 0.86rem; color: var(--text-light); line-height: 1.6; }
+
+    /* ── SERVICE AREA ──────────────────────────── */
+    #area {
+      background: var(--parchment);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .area-map {
+      background: var(--forest-mid); border-radius: 8px;
+      overflow: hidden; aspect-ratio: 1;
+      box-shadow: 0 20px 60px rgba(27,58,40,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .area-map iframe { width: 100%; height: 100%; border: 0; }
+
+    .area-list { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .area-tag {
+      background: rgba(74,140,92,0.1); border: 1px solid rgba(74,140,92,0.3);
+      color: var(--forest-mid); padding: 0.35rem 0.85rem; border-radius: 2px;
+      font-size: 0.8rem; font-weight: 500;
+    }
+
+    /* ── CONTACT ──────────────────────────────── */
+    #contact {
+      background: var(--forest);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+
+    .contact-info { }
+    .contact-info .section-label { color: var(--leaf); }
+    .contact-info h2 { color: var(--cream); }
+    .contact-info h2 em { color: var(--leaf); }
+    .contact-info p { color: rgba(244,240,230,0.7); font-weight: 300; line-height: 1.75; margin-top: 1rem; }
+
+    .contact-details { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.4rem; }
+    .contact-detail { display: flex; gap: 1rem; align-items: flex-start; }
+    .cd-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(109,186,127,0.12); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+      color: var(--leaf);
+    }
+    .cd-body h5 {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(244,240,230,0.5); margin-bottom: 0.2rem;
+    }
+    .cd-body p { font-size: 0.95rem; color: var(--cream); }
+    .cd-body a { color: var(--leaf); text-decoration: none; }
+    .cd-body a:hover { text-decoration: underline; }
+
+    /* Form */
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    label {
+      display: block; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(244,240,230,0.6); margin-bottom: 0.35rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(109,186,127,0.25);
+      border-radius: 3px; color: var(--cream);
+      padding: 0.7rem 0.9rem; font-family: 'Jost', sans-serif;
+      font-size: 0.9rem; outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--leaf); background: rgba(255,255,255,0.1);
+    }
+    input::placeholder, textarea::placeholder { color: rgba(244,240,230,0.35); }
+    select option { background: var(--forest); }
+    textarea { min-height: 110px; resize: vertical; }
+
+    .submit-btn {
+      background: var(--leaf); color: var(--forest);
+      border: none; border-radius: 3px; padding: 0.9rem 2rem;
+      font-family: 'Jost', sans-serif; font-weight: 700;
+      font-size: 0.88rem; letter-spacing: 0.07em; text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { background: #82d498; transform: translateY(-1px); }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      background: #111c14; color: rgba(244,240,230,0.5);
+      padding: 2.5rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      font-size: 0.8rem;
+    }
+    footer a { color: rgba(244,240,230,0.5); text-decoration: none; }
+    footer a:hover { color: var(--leaf); }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--cream);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 900px) {
+      #about, #area, #contact {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .about-card { right: 0; bottom: 0; }
+      #hero { padding-top: 6rem; }
+      .hero-stats { position: relative; bottom: auto; left: auto; right: auto; margin-top: 3rem; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      #trust { gap: 1.5rem; flex-direction: column; align-items: flex-start; padding: 1.5rem 5vw; }
+    }
+
+    /* ── SCROLL REVEAL ──────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon">💧</div>
+      <div class="nav-logo-text">
+        <strong>Aspen Irrigation</strong>
+        <span>Greensboro, NC</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#area">Service Area</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Free Estimate</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-content">
+      <div class="hero-badge">5-Star Rated on Angi &amp; HomeAdvisor</div>
+      <h1>Your Lawn Deserves <em>Expert</em> Irrigation</h1>
+      <p class="hero-sub">Aspen Irrigation LLC delivers professionally installed, maintained, and warrantied irrigation and landscape lighting systems for Greensboro homeowners and businesses.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Free Estimate</a>
+        <a href="#services" class="btn-outline">Our Services</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>5.0</strong>
+        <span>Star Rating</span>
+      </div>
+      <div class="hero-stat">
+        <strong>100%</strong>
+        <span>Licensed &amp; Insured</span>
+      </div>
+      <div class="hero-stat">
+        <strong>Free</strong>
+        <span>Project Estimates</span>
+      </div>
+      <div class="hero-stat">
+        <strong>Mon–Sat</strong>
+        <span>Available 7am–7pm</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div id="trust">
+    <div class="trust-item"><span class="icon">✓</span> Licensed &amp; Insured</div>
+    <div class="trust-item"><span class="icon">✓</span> Extended Warranty</div>
+    <div class="trust-item"><span class="icon">✓</span> Free Estimates</div>
+    <div class="trust-item"><span class="icon">✓</span> Residential &amp; Commercial</div>
+    <div class="trust-item"><span class="icon">✓</span> Seasonal Service Plans</div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-visual reveal">
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80" alt="Outdoor residential lawn sprinkler system spraying water over green grass" />
+      </div>
+      <div class="about-card">
+        <strong>5.0★</strong>
+        <span>Angi Rating</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <p class="section-label reveal">About Aspen Irrigation</p>
+      <h2 class="reveal reveal-delay-1">Rooted in <em>Greensboro,</em><br/>Built on Results</h2>
+      <p class="section-body reveal reveal-delay-2">At Aspen Irrigation LLC, we believe the cornerstone of any healthy, vibrant lawn is a professionally installed and maintained irrigation system. Our systems help micronutrients and microorganisms thrive — ensuring beautiful turf all year long.</p>
+      <div class="about-pillars">
+        <div class="pillar reveal reveal-delay-2">
+          <div class="pillar-icon">🌿</div>
+          <div class="pillar-body">
+            <h4>Personal Attention</h4>
+            <p>Owner John walks every property with you before the first shovel hits the ground — explaining the plan, answering your questions, and tailoring the design to your specific needs.</p>
+          </div>
+        </div>
+        <div class="pillar reveal reveal-delay-3">
+          <div class="pillar-icon">🏆</div>
+          <div class="pillar-body">
+            <h4>Quality You Can Count On</h4>
+            <p>We stand behind every installation with an extended warranty, and we service your systems each spring and winter to maximize efficiency and minimize water waste.</p>
+          </div>
+        </div>
+        <div class="pillar reveal reveal-delay-4">
+          <div class="pillar-icon">🤝</div>
+          <div class="pillar-body">
+            <h4>Community Commitment</h4>
+            <p>Beyond irrigation, John volunteers as a musician for local retirement homes and hospice, and mentors young men in the craft — investing in the community he serves.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-header reveal">
+      <span class="section-label">What We Do</span>
+      <h2>Complete Irrigation &amp;<br/><em>Lighting Solutions</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🌱</div>
+        <h3>Residential Irrigation Installation</h3>
+        <p>A custom-designed sprinkler system that delivers the right amount of water to every zone of your yard — keeping your lawn green and your water bill in check.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">Custom multi-zone system design</div>
+          <div class="service-bullet">Professional installation & cleanup</div>
+          <div class="service-bullet">Full system walkthrough & training</div>
+          <div class="service-bullet">Extended warranty included</div>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">🏢</div>
+        <h3>Commercial Irrigation</h3>
+        <p>Dependable, scalable irrigation solutions for HOAs, commercial properties, and businesses that need consistent coverage and professional service.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">Large-scale system design</div>
+          <div class="service-bullet">Smart controller integration</div>
+          <div class="service-bullet">Scheduled maintenance plans</div>
+          <div class="service-bullet">Reliable uptime &amp; fast repairs</div>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">🔧</div>
+        <h3>Maintenance & Seasonal Service</h3>
+        <p>Keep your investment running at peak performance year-round. We winterize in the fall and perform a full spring startup to prepare your system for the growing season.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">Spring system startup &amp; inspection</div>
+          <div class="service-bullet">Fall winterization</div>
+          <div class="service-bullet">Head adjustments &amp; repairs</div>
+          <div class="service-bullet">Controller programming</div>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">💡</div>
+        <h3>Landscape Lighting</h3>
+        <p>Enhance your home's curb appeal and security with professionally installed landscape lighting that showcases your architectural detail and landscaping beautifully.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">Architectural accent lighting</div>
+          <div class="service-bullet">Pathway &amp; garden lighting</div>
+          <div class="service-bullet">Security-enhancing placement</div>
+          <div class="service-bullet">Energy-efficient LED systems</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <p class="section-label reveal">How It Works</p>
+    <h2 class="reveal reveal-delay-1">From <em>First Call</em> to<br/>Beautiful Lawn</h2>
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h4>Free On-Site Estimate</h4>
+        <p>John visits your property, walks the grounds with you, and explains exactly what he plans to do — at no cost or obligation to you.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <h4>Custom System Design</h4>
+        <p>We design a multi-zone irrigation plan tailored to your lawn's shape, soil type, and water needs.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <h4>Professional Installation</h4>
+        <p>Our crew arrives on schedule, completes the job with care, and leaves your property clean and tidy.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">04</div>
+        <h4>Walkthrough & Warranty</h4>
+        <p>We walk you through the complete system, show you how to operate it, and back it up with our extended warranty.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="reviews-header reveal">
+      <p class="section-label">Customer Reviews</p>
+      <h2>What <em>Greensboro</em><br/>Homeowners Say</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="rating-summary reveal">
+        <div class="rating-big">5.0</div>
+        <div class="rating-stars">★★★★★</div>
+        <p class="rating-label">Overall Rating</p>
+        <p style="margin-top:1rem; font-size:0.85rem; color:rgba(244,240,230,0.6); line-height:1.6;">Rated 5 stars on Angi &amp; HomeAdvisor. Aspen Irrigation maintains a 4.5+ star average throughout their time on Angi.</p>
+      </div>
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"John was an absolute PRO. If you're looking for a top notch affordable irrigation installer, he is your man. He came out for the estimate, walked the property with me explaining exactly what he planned to do. He showed up and completed the work in a timely manner and even went back to make adjustments to ensure everything was perfect."</p>
+        <div class="review-author">Kenderick D. &nbsp;<span class="review-source">via Angi</span></div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"John installed a six-zone irrigation system at our home. He explained how the system works. He and his crew were very professional and cleaned up all areas where irrigation was installed. We are very pleased with the results and will definitely recommend his services."</p>
+        <div class="review-author">Verified Customer &nbsp;<span class="review-source">via HomeAdvisor</span></div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"John provided me with great options to fit my budget. His workmanship was excellent, and he left my property in great shape. He was kind and courteous, and I will definitely be using him again."</p>
+        <div class="review-author">Verified Customer &nbsp;<span class="review-source">via HomeAdvisor</span></div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"John is incredible! He really knows what he is doing when it comes to an irrigation system. He is considerate to your needs and has a passion for what he does. He takes care of your yard as if it were his own. Also he provides instruction to young men learning the craft, which helps build our society in a positive way!"</p>
+        <div class="review-author">Verified Customer &nbsp;<span class="review-source">via HomeAdvisor</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why">
+    <div style="text-align:center" class="reveal">
+      <p class="section-label">Why Aspen Irrigation</p>
+      <h2>Everything You Need.<br/><em>Nothing You Don't.</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-num">🛡️</div>
+        <h4>Licensed &amp; Insured</h4>
+        <p>Full professional licensing and insurance coverage for your complete peace of mind.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-num">📋</div>
+        <h4>Free Estimates</h4>
+        <p>No pressure, no cost. Get an honest, detailed quote before any work begins.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-num">⏰</div>
+        <h4>Extended Warranty</h4>
+        <p>We stand behind every installation with an extended warranty on parts and labor.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-3">
+        <div class="why-num">💧</div>
+        <h4>Water Efficiency</h4>
+        <p>Seasonal service and expert design minimize water waste and lower your utility bills.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section id="area">
+    <div class="area-map reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103454.87484!2d-79.8600!3d36.0726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8853310006df7e5d%3A0x8c3bc6f40fe29d3c!2sGreensboro%2C%20NC!5e0!3m2!1sen!2sus!4v1234567890"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <p class="section-label">Service Area</p>
+      <h2>Proudly Serving<br/><em>The Triad Region</em></h2>
+      <p class="section-body">Aspen Irrigation LLC is based in Greensboro, NC and serves homeowners and businesses throughout the Guilford County area and surrounding Triad communities.</p>
+      <div class="area-list">
+        <span class="area-tag">Greensboro</span>
+        <span class="area-tag">High Point</span>
+        <span class="area-tag">Winston-Salem</span>
+        <span class="area-tag">Kernersville</span>
+        <span class="area-tag">Burlington</span>
+        <span class="area-tag">Jamestown</span>
+        <span class="area-tag">Summerfield</span>
+        <span class="area-tag">Oak Ridge</span>
+        <span class="area-tag">Guilford County</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-info reveal">
+      <p class="section-label">Get in Touch</p>
+      <h2>Ready for a <em>Greener</em><br/>Lawn?</h2>
+      <p>Fill out the form and John will get back to you promptly to schedule your free on-site estimate. Available Monday–Saturday, 7am–7pm.</p>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <div class="cd-icon">📍</div>
+          <div class="cd-body">
+            <h5>Location</h5>
+            <p>Greensboro, NC 27455</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon">🕐</div>
+          <div class="cd-body">
+            <h5>Business Hours</h5>
+            <p>Monday – Saturday: 7:00 AM – 7:00 PM<br/>Sunday: Closed</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon">⭐</div>
+          <div class="cd-body">
+            <h5>Verified On</h5>
+            <p><a href="https://www.angi.com/companylist/us/nc/greensboro/aspen-irrigation-llc-reviews-1.htm" target="_blank">Angi</a> &amp; <a href="https://www.homeadvisor.com/rated.IRRIGATIONMANAGEMENT.13505624.html" target="_blank">HomeAdvisor</a> — 5.0 Stars</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div>
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="John" required />
+          </div>
+          <div>
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@example.com" required />
+          </div>
+          <div>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="(336) 555-0100" />
+          </div>
+        </div>
+        <div>
+          <label for="service">Service Needed</label>
+          <select id="service">
+            <option value="">Select a service…</option>
+            <option>Residential Irrigation Installation</option>
+            <option>Commercial Irrigation Installation</option>
+            <option>Spring System Startup</option>
+            <option>Fall Winterization</option>
+            <option>Irrigation Repair / Maintenance</option>
+            <option>Landscape Lighting</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Tell Us About Your Project</label>
+          <textarea id="message" placeholder="Describe your yard, any existing system, or what you're hoping to achieve…"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Request Free Estimate →</button>
+        <p id="form-msg" style="margin-top:0.75rem; font-size:0.85rem; color:var(--leaf); display:none;">
+          ✓ Thank you! We'll be in touch shortly.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-brand">Aspen Irrigation LLC</div>
+      <div style="margin-top:0.3rem;">© 2024 Aspen Irrigation LLC · Greensboro, NC · All rights reserved.</div>
+    </div>
+    <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.angi.com/companylist/us/nc/greensboro/aspen-irrigation-llc-reviews-1.htm" target="_blank">Angi Profile</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.submit-btn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('form-msg').style.display = 'block';
+        btn.textContent = 'Sent!';
+      }, 900);
+    }
+  </script>
+</body>
+</html>
